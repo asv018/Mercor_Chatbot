@@ -41,7 +41,7 @@ function ChatMessage(props: { message: Message }) {
   }
 }
 
-function App() {
+function Chat() {
   const [input, setInput] = useState<string>("");
   const [botState, setBotState] = useState<object>({});
   const [history, setHistory] = useState<Message[]>([
@@ -197,4 +197,4 @@ function App() {
   );
 }
 
-export default App;
+export default Chat;

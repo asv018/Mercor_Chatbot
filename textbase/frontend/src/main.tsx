@@ -1,13 +1,13 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+// import App from './App.tsx';
+import Chat from './Chat.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <div>
     <div className="chatbot-container">
-      <h1>Revolutionizing Healthcare: Introducing Your Personalized Medicine Chatbot for Instant Health Insights!</h1>
-      <App />
+      <h1>Medicine Chatbot</h1>
+      <Chat/>
     </div>
-  </React.StrictMode>
+  </div>
 );
