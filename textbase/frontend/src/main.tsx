@@ -4,10 +4,10 @@ import Chat from './Chat.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <div>
+<div>
     <div className="chatbot-container">
-      <h1>Medicine Chatbot</h1>
-      <Chat/>
+      <h1 className="chatbot-title">Medicine Chatbot</h1> {/* Add the chatbot-title class */}
+      <Chat />
     </div>
   </div>
 );

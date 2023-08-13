@@ -5,3 +5,16 @@
 #root {
   padding: 0;
 }
+/* styles.css */
+
+.chatbot-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.chatbot-title {
+  font-size: 24px;
+  color: #007bff; /* Blue color */
+  margin-bottom: 10px;
+}

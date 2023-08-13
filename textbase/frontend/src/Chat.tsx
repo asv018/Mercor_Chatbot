@@ -3,6 +3,7 @@ import React from "react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import "./App.css";
+import * as googleTTS from 'google-tts-api'; 
 
 type Message = {
   content: string;
@@ -96,7 +97,30 @@ function Chat() {
     chatRequest([...history, newMessage], botState);
   }
 
+    
   
+  async function handleStartRecording() {
+    // const handleStartRecording = async () => {
+      try {
+        const textToGenerateAudioFrom = "Hello, this is a sample text."; // Replace with the text you want to generate audio from
+        
+        const audioData = await googleTTS.getAllAudioBase64(textToGenerateAudioFrom, {
+          lang: 'en',
+          slow: false,
+          host: 'https://translate.google.com',
+          timeout: 10000,
+          splitPunct: ',.?',
+        });
+  
+        console.log(audioData);
+        // audioData will contain an array of objects with shortText and base64 properties
+        
+        // You can do something with the audio data here, like playing it or displaying it
+      } catch (error) {
+        console.error(error);
+      }
+    // }
+}
 
   return (
     <div className={`flex h-screen antialiased text-gray-800 ${darkMode ? "bg-black" : "bg-white"}`}>
@@ -161,11 +185,11 @@ function Chat() {
                   </svg>
                 </span>
               </button>
-              <button
+              {/* <button
                 className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
                 onClick={() => {
                   // Your code for the second button action
-                  chatInputHandler()
+                    handleStartRecording()
                 }}
               >
                 <span>Start Recording</span>
@@ -185,9 +209,52 @@ function Chat() {
                     ></path>
                   </svg>
                 </span>
-              </button>
-             </div>
-
+              </button> */}
+               <button
+                className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                onClick={handleStartRecording} // Renamed the function to reflect its purpose
+                >
+                <span>Start Recording</span>
+                <span className="ml-2">
+                    <svg
+                    className="w-4 h-4 transform rotate-45 -mt-px"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    ></path>
+                    </svg>
+                </span>
+                </button>
+                <button
+                className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                onClick={handleStartRecording} // Renamed the function to reflect its purpose
+                >
+                <span>Stop Recording</span>
+                <span className="ml-2">
+                    <svg
+                    className="w-4 h-4 transform rotate-45 -mt-px"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    ></path>
+                    </svg>
+                </span>
+                </button>
+                </div>
               </div>
             </div>
           </div>
@@ -197,4 +264,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default Chat
